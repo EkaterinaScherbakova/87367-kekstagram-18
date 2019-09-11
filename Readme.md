@@ -1,7 +1,7 @@
 # Личный проект «Кекстаграм» [![Build status][travis-image]][travis-url]
 
 * Студент: [Екатерина Щербакова](https://up.htmlacademy.ru/javascript/18/user/87367).
-* Наставник: `Неизвестно`.
+* Наставник: [Павел Фанасков](https://htmlacademy.ru/profile/id615993).
 
 ---
 
