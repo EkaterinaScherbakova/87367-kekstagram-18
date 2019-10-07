@@ -7,7 +7,7 @@ var MESSAGES = [
   'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
   'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
   'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
-]
+];
 
 var NAMES = [
   'Артем',
@@ -16,9 +16,9 @@ var NAMES = [
   'Властелин',
   'Марфа Васильна',
   'Сонька'
-]
+];
 
-var generateMock = function() {
+var generateMock = function () {
   var mock = [];
   for (var i = 1; i <= 25; i++) {
     var element = {};
@@ -37,7 +37,7 @@ var generateMock = function() {
   return mock;
 };
 
-var createElement = function(photo) {
+var createElement = function (photo) {
   var template = document.querySelector('#picture').content.querySelector('a');
   var element = template.cloneNode(true);
   var image = element.querySelector('.picture__img');
@@ -49,14 +49,14 @@ var createElement = function(photo) {
   return element;
 };
 
-var populatePictures = function(photos) {
+var populatePictures = function (photos) {
   var pictures = document.querySelector('.pictures');
   var fragment = document.createDocumentFragment();
 
   for (var i = 0; i < photos.length; i++) {
     var element = createElement(photos[i]);
     fragment.appendChild(element);
-  };
+  }
 
   pictures.appendChild(fragment);
 };
