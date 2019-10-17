@@ -18,18 +18,23 @@ var NAMES = [
   'Сонька'
 ];
 
+var generateRandomNumber = function (min, max) {
+  var randomNumber = Math.round(Math.random() * (max - min) + min);
+  return randomNumber;
+};
+
 var generateMock = function () {
   var mock = [];
   for (var i = 1; i <= 25; i++) {
     var element = {};
     element.url = 'photos/' + i + '.jpg';
     element.description = 'Описание фотографии';
-    element.likes = Math.round(Math.random() * 185 + 15);
+    element.likes = generateRandomNumber(15, 200);
 
     var comment = {};
-    comment.avatar = 'img/avatar-' + Math.round(Math.random() * 6) + '.svg';
-    comment.message = MESSAGES[Math.round(Math.random() * (MESSAGES.length - 1))];
-    comment.name = NAMES[Math.round(Math.random() * (NAMES.length - 1))];
+    comment.avatar = 'img/avatar-' + generateRandomNumber(1, 6) + '.svg';
+    comment.message = MESSAGES[generateRandomNumber(0, MESSAGES.length - 1)];
+    comment.name = NAMES[generateRandomNumber(0, NAMES.length - 1)];
     element.comments = [comment];
 
     mock.push(element);
