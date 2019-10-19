@@ -42,7 +42,7 @@ var generateMock = function () {
   return mock;
 };
 
-var createElement = function (photo) {
+var createPicture = function (photo) {
   var template = document.querySelector('#picture').content.querySelector('a');
   var element = template.cloneNode(true);
   var image = element.querySelector('.picture__img');
@@ -59,12 +59,55 @@ var populatePictures = function (photos) {
   var fragment = document.createDocumentFragment();
 
   for (var i = 0; i < photos.length; i++) {
-    var element = createElement(photos[i]);
+    var element = createPicture(photos[i]);
     fragment.appendChild(element);
   }
 
   pictures.appendChild(fragment);
 };
 
-var mock = generateMock();
-populatePictures(mock);
+var createComment = function (comment) {
+  var template = document.querySelector('#social-comment').content.querySelector('li');
+  var element = template.cloneNode(true);
+  var image = element.querySelector('img');
+  var text = element.querySelector('.social__text');
+  image.src = comment.avatar;
+  image.alt = comment.name;
+  text.textContent = comment.message;
+  return element;
+};
+
+var populateComments = function (comments) {
+  var container = document.querySelector('.social__comments');
+  var fragment = document.createDocumentFragment();
+
+  for (var i = 0; i < comments.length; i++) {
+    var element = createComment(comments[i]);
+    fragment.appendChild(element);
+  }
+
+  container.appendChild(fragment);
+};
+
+var showBigPicture = function (picture) {
+  var bigPicture = document.querySelector('.big-picture');
+  var image = bigPicture.querySelector('.big-picture__img img');
+  var likes = bigPicture.querySelector('.likes-count');
+  var commentsCount = bigPicture.querySelector('.comments-count');
+  var socialCaption = bigPicture.querySelector('.social__caption');
+  var socialCommentCount = bigPicture.querySelector('.social__comment-count');
+  var comentsLoader = bigPicture.querySelector('.comments-loader');
+
+  bigPicture.classList.remove('hidden');
+  socialCommentCount.classList.add('visually-hidden');
+  comentsLoader.classList.add('visually-hidden');
+  image.src = picture.url;
+  likes.textContent = picture.likes;
+  commentsCount.textContent = picture.comments.length;
+  populateComments(picture.comments);
+  socialCaption.textContent = picture.description;
+};
+
+var pictures = generateMock();
+populatePictures(pictures);
+showBigPicture(pictures[0]);
